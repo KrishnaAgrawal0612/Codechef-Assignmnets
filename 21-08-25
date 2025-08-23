@@ -35,3 +35,45 @@ class Solution {
     }
 }
 .........................................................................................................................................................................
+
+Find Common nodes in two bsts:
+
+class Solution {
+    // Function to find the nodes that are common in both BST.
+    public static ArrayList<Integer> findCommon(Node r1, Node r2) {
+        // code here
+        ArrayList<Integer> finalans=new ArrayList<>();
+        ArrayList<Integer> first=new ArrayList<>();
+        HashSet<Integer> second=new HashSet<>();
+        inline(r1,first);
+        inlineset(r2,second);
+        Collections.sort(first);
+        for(int i=0;i<first.size();i++){
+           if(second.contains(first.get(i))){
+               finalans.add(first.get(i));
+           }
+        }
+        return finalans;
+        
+        
+        
+    }
+    public static void  inline(Node root,ArrayList<Integer> ans){
+        if(root==null) return ;
+        inline(root.left,ans);
+        ans.add(root.data);
+        inline(root.right,ans);
+        return ;
+    }
+     public static void inlineset(Node root,HashSet<Integer> ans){
+        if(root==null) return ;
+        inlineset(root.left,ans);
+        ans.add(root.data);
+        inlineset(root.right,ans);
+        return ;
+    }
+
+    
+}
+
+...........................................................................................................................................................................
