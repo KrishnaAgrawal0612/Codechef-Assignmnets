@@ -14,4 +14,28 @@ class Solution {
       }
 }
 ...................................................................................................................................
+Kth smallest element:
+
+class Solution {
+    public int kthSmallest(TreeNode root, int k) {
+        ArrayList<Integer> ans=new ArrayList<>();
+        
+        inorder(root,k,ans);
+        return ans.get(ans.size()-1);
+
+
+        
+    }
+    public void inorder(TreeNode root,int k,ArrayList<Integer> ans){
+        if(root==null) return;
+        inorder(root.left,k,ans);
+        if(ans.size()==k) return;
+        ans.add(root.val);
+        if(ans.size()==k) return;
+        inorder(root.right,k,ans);
+        return;
+
+    }
+}
+.......................................................................................................................................
 
