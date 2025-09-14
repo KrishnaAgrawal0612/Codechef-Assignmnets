@@ -1,0 +1,86 @@
+Bfs traversal
+
+class Solution {
+    // Function to return Breadth First Search Traversal of given graph.
+    public ArrayList<Integer> bfs(ArrayList<ArrayList<Integer>> adj) {
+        // code here
+        Queue<Integer> q=new LinkedList<>();
+        q.add(0);
+        boolean[] visited=new boolean[adj.size()];
+         ArrayList<Integer> ans=new ArrayList<>();
+         visited[0]=true;
+        while(!q.isEmpty()){
+            int index=q.poll();
+           
+            ans.add(index);
+            
+            for(int i:adj.get(index)){
+                if(!visited[i]){
+                    q.add(i);
+                    visited[i]=true;
+                }
+            }
+        
+        }
+        return ans;
+        
+    }
+}
+
+............................................................................................................................................................................
+dfs traversal
+
+class Solution {
+    // Function to return a list containing the DFS traversal of the graph.
+    public ArrayList<Integer> dfs(ArrayList<ArrayList<Integer>> adj) {
+        // Code here
+        ArrayList<Integer> ans=new ArrayList<>();
+        boolean[] visited=new boolean[adj.size()];
+        visited[0]=true;
+        dfs(adj,ans,0,visited);
+        return ans;
+        
+        
+    }
+    public static void dfs(ArrayList<ArrayList<Integer>> adj,ArrayList<Integer> ans,int index,boolean[] visited){
+        ans.add(index);
+        for(int i:adj.get(index)){
+            if(!visited[i]){
+                visited[i]=true;
+                dfs(adj,ans,i,visited);
+            }
+        }
+        
+    }
+}
+.........................................................................................................................................................................
+
+number of islands
+
+class Solution {
+    public int countIslands(char[][] grid) {
+        // Code here
+        int count=0;
+        for(int i=0;i<grid.length;i++){
+            for(int j=0;j<grid[0].length;j++){
+                if(grid[i][j]=='L'){
+                    dfs(grid,i,j);
+                    count++;
+                }
+            }
+        }
+        return count;
+        
+    }
+    public static void dfs(char[][] grid,int row,int column){
+        if(row<0 || row>=grid.length || column <0 ||column>=grid[0].length||grid[row][column]=='W') return;
+         grid[row][column]='W';
+         int[] d={0,0,1,-1,1,-1,1,-1};
+         int[] d1={1,-1,0,0,1,-1,-1,1};
+         for(int i=0;i<d.length;i++){
+             dfs(grid,row+d[i],column+d1[i]);
+         }
+    }
+}
+.........................................................................................................................................
+
